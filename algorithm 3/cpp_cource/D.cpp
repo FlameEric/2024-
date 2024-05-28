@@ -16,34 +16,35 @@ int main()
         {
             num[i][0]=10;
         }
-         else if(str[i][0]<'10'&&str[i][1]<'10')
+         else if(str[i][1]=='/')
+        {
+            
+            num[i][0]=str[i][0]-'0';
+            num[i][1]=10-num[i][0];
+        }
+        else
         {
             num[i][0]=str[i][0]-'0';
             num[i][1]=str[i][1]-'0';
-        }
-        else if(str[i][0]<'10'&&str[i][1]=='/')
-        {
-            num[i][0]=str[i][0]-'0';
-            num[i][1]=10-(str[i][0]-'0');
         }
     }
     int end=0;
     for(i=1;i<=10;i++)
     {
         int tt;
-        if(str[i][0]=="/")
+        if(str[i][0]=='/')
         {
             if(str[i+1].size()<2)tt=num[i+2][0];
             else tt=num[i+1][1];
             score[i]=10+num[i+1][0]+tt;
         }
-        else if(str[i][0]<'10'&&str[i][1]<'10')
-        {
-            score[i]=num[i][0]+num[i][1];
-        }
-        else if(str[i][0]<'10'&&str[i][1]=='/')
+        else if(str[i][1]=='/')
         {
             score[i]=10+num[i+1][0];
+        }
+        else 
+        {
+            score[i]=num[i][0]+num[i][1];
         }
         end+=score[i];
     }
